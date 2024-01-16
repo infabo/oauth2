@@ -104,6 +104,8 @@ class OAuth2LoginService extends AbstractService implements SingletonInterface
                     ]
                 );
             } catch (\Exception $ex) {
+                $logger = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Log\LogManager::class)->getLogger(__CLASS__);
+                $logger->error($ex->getMessage(), $ex->getTrace());
                 return false;
             }
 
@@ -118,6 +120,8 @@ class OAuth2LoginService extends AbstractService implements SingletonInterface
 
                     return $record;
                 } catch (\Exception $ex) {
+                    $logger = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Log\LogManager::class)->getLogger(__CLASS__);
+                    $logger->error($ex->getMessage(), $ex->getTrace());
                     return false;
                 }
             }
